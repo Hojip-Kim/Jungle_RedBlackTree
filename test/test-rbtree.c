@@ -372,12 +372,12 @@ int main(void) {
   test_insert_single(1024);
   test_find_single(512, 1024);
   test_erase_root(128);
-  test_find_erase_fixed();
+  test_find_erase_fixed(); // segmentation fault
   test_minmax_suite();
   test_to_array_suite();
-  test_distinct_values();
-  test_duplicate_values();
-  test_multi_instance();
-  test_find_erase_rand(10000, 17);
+  test_distinct_values(); // 중복값 leak 일어남.
+  test_duplicate_values(); // 중복값 leak 일어남.
+  test_multi_instance(); // arr1[i] == res1[i] failed
+  test_find_erase_rand(10000, 17); // 무한루프
   printf("Passed all tests!\n");
 }
